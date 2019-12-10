@@ -1,95 +1,24 @@
+#3D Rotation Drawing
 
-////////////////////////////////////////////
-//Global Variable
-////////////////////////////////////////////
-var objs = [];
-var btns = [];
-var FPS = 60;
-var timepast = 0;
-var R = 200;
-var G = 200;
-var B = 30;
-var bR = 20;
-var bG = 0;
-var bB = 0;
-var brushType = "CIRCLE";
-var pbrushType = "CIRCLE";
-var isPlaying = true;
-var isMenuHide = false;
+I tried to create a drawing board with 3d motion .
 
-function Node(position, givenSize, givenR, givenG, givenB) {
-  
-  this.R = givenR;
-  this.G = givenG;
-  this.B = givenB; 
-  this.position = createVector(position.x, position.y);
-  this.position.x += (random(20) - 10);
-  this.position.y += (random(20) - 10);
-  this.size = createVector(0, 0);
-  this.sizeScale = 0.3;
-  
-  var randomSize = givenSize / 2 + random(10);
-  
-  this.baseSize = createVector(randomSize, randomSize);
-  this.timepast = 0;
-  this.isPlaying = isPlaying;
-  this.rotateAngle = random(3 * PI);
-  this.shapeType = brushType;
-  this.pmouseX = pmouseX;
-  this.pmouseY = pmouseY;
-  this.mouseX = mouseX;
-  this.mouseY = mouseY;
-}
+## Summary
 
+In my final project, I tried to use p5 to create a drawing board. For the programming part, I used a lot of variables and if statements to create the rotation and colorful buttons. For the 3D Rotation, I focused on the nod and time past and frequency to create the rotation. And it is interactive with the brush .
 
-Node.prototype.drawing = function() {
-    noStroke();
-    translate(this.position.x, this.position.y);
-    fill(this.size.x * this.R / 20, this.size.x * this.G / 10, this.size.x * this.B / 10, 128);
-    ellipse(sin(this.timepast) * this.baseSize.x, cos(this.timepast) * this.baseSize.y, this.size.x * 1.25, this.size.y * 1.25);
-    fill(this.size.x * this.R / 10, this.size.x * this.G / 10, this.size.x * this.B / 10, 255);
-    ellipse(sin(this.timepast) * this.baseSize.x, cos(this.timepast) * this.baseSize.y, this.size.x, this.size.y);
-    resetMatrix();
-}
+## Component Parts
 
-Node.prototype.update = function() {
-  this.size = createVector(this.baseSize.x + sin(this.timepast) * this.baseSize.x * this.sizeScale,
-    this.baseSize.y + sin(this.timepast) * this.baseSize.y * this.sizeScale);
-  if (this.isPlaying) {
-    this.timepast += 1 / FPS;
-  }
-}
+This painting system is an extension of the concept of "painting", but still needs to reflect the similarity with the traditional painting system
 
+## Timeline
 
-function setup() {
-  frameRate(FPS);
-  createCanvas(600, 600);
-  noCursor();
-  strokeCap(PROJECT);
-}
+What did you do in each of the past four weeks?
 
-function draw() {
-  background(bR, bG, bB); 
+- Week 1: Write Proposal, flush out initial code for your idea
+- Week 2: Changed my original ideas and look at videos seeking for new ideas. Partly finished the basic coding for the motion.
+Week 3: Adding more function buttons and sound to completely finish the coding
+- Week 4: Present!
  
-  if (mouseIsPressed && (mouseX > 40 || isMenuHide))
-  {
-    if (brushType == "CIRCLE" ) {
-      var position = createVector(mouseX, mouseY);
-      objs.push(new Node(position, sqrt(sq(mouseX - pmouseX) + sq(mouseY - pmouseY)), R, G, B));
-    }
-  }
-  
-  for (var i = 0; i < objs.length; i++) {
-    objs[i].drawing();
-    objs[i].update();
-  }
-  //Canvas
-  if (mouseX > 40 ) {
-    fill(R * 1.5, G * 1.5, B * 1.5);
-    if (brushType == "CIRCLE") {
-      ellipse(mouseX, mouseY, 10, 10);
-    }
-  }
-}
+## Challenges
 
-
+I watched some video and learned how to create the 3d rotation. But the math part is still really hard to understand. And the sin,cos,is pretty hard for art students. Fortunately, I asked some of my firends to help me.! 
